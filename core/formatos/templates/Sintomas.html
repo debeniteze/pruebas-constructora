@@ -1,0 +1,361 @@
+{% extends 'LayoutPrincipal.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="mt-4">
+  <form id="FormFormatoSintomas">
+    {% csrf_token %}
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">REPORTE DE CONDICIONES DE SALUD </h4>
+        <div class="single-table">
+          <div class="table-responsive">
+            <table class="table text-left">
+              <thead class="text-uppercase bg-secondary">
+                <tr class="text-white">
+                  <th scope="col" class="text-center">PREGUNTAS</th>
+                  <th colspan="3" class="text-center">PUNTAJE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td scope="row">¿PRESENTA TOS RECURRENTE O ESPONTANEA HOY O EN DIAS PREVIOS? (2 o 3 DIAS ANTES)</td>
+                  <th>
+                  <th>1</th>
+                  <th> <input type="text" name="" value="" id="preguntaUno" /> </th>
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="row">¿PRESENTA ESCALOFRIO RECURRENTE O ESPONTANEO HOY O EN DIAS PREVIOS?</th>
+                  <th>
+                  <th>1</th>
+                  <th> <input type="text" name="" value="" id="preguntaDos" /> </th>
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="row">¿PRESENTA DOLOR DE GARGANTA RECURRENTE O ESPONTANEO HOY O EN DIAS PREVIOS? (2 o 3 DIAS ANTES)</th>
+                  <th>
+                  <th>1</th>
+                  <th> <input type="text" name="" value="" id="preguntaTres"> </th>
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="row">¿PRESENTA DOLOR CORPORAL O MALESTAR GENERAL RECURRENTE O ESPONTANEO HOY O EN DIAS PREVIOS? (2 o 3 DIAS ANTES)</th>
+                  <th>
+                  <th>1</th>
+                  <th> <input type="text" name="" value="" id="PreguntaCuatro"> </th>
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="row">¿PRESENTA DOLOR DE CABEZA RECURRENTE O ESPONTANEO HOY O EN DIAS PREVIOS? (2 o 3 DIAS ANTES)</th>
+                  <th>
+                  <th>1</th>
+                  <th> <input type="text" name="" value="" id="preguntaCinco"> </th>
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="row">¿PRESENTA FIEBRE MAYOR A 37.8 °C, RECURRENTE O ESPONTANEA HOY O EN DIAS PREVIOS? (2 o 3 DIAS ANTES)</th>
+                  <th>
+                  <th>1</th>
+                  <th> <input type="text" name="" value="" id="preguntaSeis"> </th>
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="row">¿PRESENTA PERDIDA DEL OLFATO, RECURRENTE O ESPONTANEA HOY O EN DIAS PREVIOS? (2 o 3 DIAS ANTES)</th>
+                  <th>
+                  <th>1</th>
+                  <th> <input type="text" name="" value="" id="preguntaSiete"> </th>
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="row">¿PRESENTA DIFICULTAD PARA RESPIRAR COMO SI NO ENTRARA AIRE A SUS PULMONES DE MANERA RECURRENTE O ESPONTANEO HOY O EN DIAS PREVIOS? (2 o 3 DIAS ANTES)</th>
+                  <th>
+                  <th>1</th>
+                  <th> <input type="text" name="" value="" id="preguntaOcho"> </th>
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="row">¿PRESENTO FATIGA O REAL DETERIORO DE MIS MOVIMIENTOS Y MIS GANAS DE HACER ALGO, ES RECURRENTE O ESPONTANEO HOY O EN DIAS PREVIOS? (2 o 3 DIAS ANTES)
+                  </th>
+                  <th>
+                  <th>1</th>
+                  <th> <input type="text" name="" value="" id="preguntaNueve"> </th>
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="row">¿HAS CUIDADO O ESTADO EN CONTACTO CON PACIENTE POSITIVO COVID19?</th>
+                  <th>
+                  <th>1</th>
+                  <th> <input type="text" name="" value="" id="preguntaDiez"> </th>
+                  </th>
+                </tr>
+                <tr class="text-center text-white table-secondary">
+                  <th scope="row">TABLA DE PUNTAJE COMO REFERENCIA AL PROTOCOLO COVID 19</th>
+                  <th>
+                  <th>15</th>
+                  <th> <input type="text" name="" value="" id="totalPuntaje"> </th>
+                  </th>
+                </tr>
+                <tr class="text-center text-white table-secondary">
+                  <th scope="row">TEMPERATURA</th>
+                  <th>
+                  <th>15</th>
+                  <th> <input type="text" name="" value="" id="temperatura"> </th>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header text-center" style="background: #ccc">
+          SECCION EXCLUSIVA PARA VISITANTES
+        </div>
+        <div class="card-body">
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="validationCustom01" class="text-primary">Nombre Completo</label>
+              <input type="text" class="form-control" id="nombreVistante" placeholder="Nombre Visitante">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="validationCustom02" class="text-primary">Cedula</label>
+              <input type="text" class="form-control" id="cedulaVisitante" placeholder="Documento Identidad">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="validationCustom02" class="text-primary">EPS</label>
+              <input type="text" class="form-control" id="epsVisitante" placeholder="Entidad promotora de salud">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="validationCustom02" class="text-primary">AFP</label>
+              <input type="text" class="form-control" id="afpVisitante" placeholder="Administradoras de fondos de pensiones">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="validationCustom02" class="text-primary">ARL</label>
+              <input type="text" class="form-control" id="arlVisitante" placeholder="Administradora de Riesgos Laborales">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="validationCustom02" class="text-primary">Nombre Persona Contacto</label>
+              <input type="text" class="form-control" id="nombreContactoVisitante" placeholder="Nombre Completo">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="validationCustom02" class="text-primary">Telefono</label>
+              <input type="text" class="form-control" id="telefonoPersonaContactoVisistante" placeholder="Celular y/o Telefono">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="validationCustom02" class="text-primary">Parentesco</label>
+              <input type="text" class="form-control" id="parentescoConVisitante" placeholder="Parentesco">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="validationCustom02" class="text-primary">Donde Vive</label>
+              <input type="text" class="form-control" id="viviendaContactoVisitante" placeholder="Direccion - Barrio - Localidad">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="single-table">
+            <div class="table-responsive">
+              <table class="table text-left">
+                <thead class="text-uppercase bg-secondary">
+                  <tr class="text-white">
+                    <th scope="col" class="text-center">ENCARGADO DE OBRA</th>
+                    <th class="text-center">TRABAJADOR</th>
+                    <th class="text-center">INSPECTOR SST </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td scope="row"> <input type="text" name="" value="" placeholder="Nombre Completo" class="col-md-12"> </th>
+                    <td scope="row"> <input type="text" name="" value="" placeholder="Nombre Completo" class="col-md-12"> </th>
+                    <td scope="row"> <input type="text" name="" value="" placeholder="Nombre Completo" class="col-md-12"> </th>
+                  </tr>
+                  <tr>
+                    <td scope="row"> <input type="text" name="" value="" id="cedulaEncargadoObra" placeholder="Documento Identidad" class="col-md-12"> </th>
+                    <td scope="row"> <input type="text" name="" value="" id="cedulaTrabajador" placeholder="Documento Identidad" class="col-md-12"> </th>
+                    <td scope="row"> <input type="text" name="" value="" id="cedulaInspectorSST" placeholder="Documento Identidad" class="col-md-12"> </th>
+                  </tr>
+                  <tr>
+                    <td scope="row"> <canvas id="canvas"   width="250" height="72">Su navegador no soporta canvas :( </canvas> </th>
+                    <td scope="row"> <canvas id="canvas1"  width="250" height="72">Su navegador no soporta canvas :( </canvas> </th>
+                    <td scope="row"> <canvas id="canvas2"  width="250" height="72">Su navegador no soporta canvas :( </canvas> </th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header text-center" style="background: #ccc">
+          OBSERVACIONES SGSST O ENCARGADO DE SALUD
+        </div>
+        <div class="card-body">
+          <div class="form-row">
+            <div class="col-md-12 mb-3">
+              <textarea name="name" rows="8" cols="80" class="col-md-12" id="observaciones"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="btnGuardar">Guardar</button>
+    </div>
+  </form>
+</div>
+{% block javascript %}
+<script src="{% static 'dist/paper-full.js' %} "></script>
+
+<script type="text/paperscript" canvas="canvas">
+  // Create two drawing tools.
+    // tool1 will draw straight lines, tool2 will draw clouds.
+
+    // Both share the mouseDown event:
+    var path;
+    function onMouseDown(event) {
+        path = new Path();
+        path.strokeColor = 'black';
+        path.add(event.point);
+    }
+
+    window.app = {
+        tool1: new Tool({
+            onMouseDown: onMouseDown,
+            onMouseDrag: function(event) {
+                path.add(event.point);
+            }
+        }),
+
+        tool2: new Tool({
+            minDistance: 20,
+            onMouseDown: onMouseDown,
+            onMouseDrag: function(event) {
+                // Use the arcTo command to draw cloudy lines
+                path.arcTo(event.point);
+            }
+        })
+    };
+</script>
+<script type="text/paperscript" canvas="canvas1">
+  // Create two drawing tools.
+    // tool1 will draw straight lines, tool2 will draw clouds.
+
+    // Both share the mouseDown event:
+    var path;
+    function onMouseDown(event) {
+        path = new Path();
+        path.strokeColor = 'black';
+        path.add(event.point);
+    }
+
+    window.app = {
+        tool1: new Tool({
+            onMouseDown: onMouseDown,
+            onMouseDrag: function(event) {
+                path.add(event.point);
+            }
+        }),
+
+        tool2: new Tool({
+            minDistance: 20,
+            onMouseDown: onMouseDown,
+            onMouseDrag: function(event) {
+                // Use the arcTo command to draw cloudy lines
+                path.arcTo(event.point);
+            }
+        })
+    };
+</script>
+<script type="text/paperscript" canvas="canvas2">
+  // Create two drawing tools.
+    // tool1 will draw straight lines, tool2 will draw clouds.
+
+    // Both share the mouseDown event:
+    var path;
+    function onMouseDown(event) {
+        path = new Path();
+        path.strokeColor = 'black';
+        path.add(event.point);
+    }
+
+    window.app = {
+        tool1: new Tool({
+            onMouseDown: onMouseDown,
+            onMouseDrag: function(event) {
+                path.add(event.point);
+            }
+        }),
+
+        tool2: new Tool({
+            minDistance: 20,
+            onMouseDown: onMouseDown,
+            onMouseDrag: function(event) {
+                // Use the arcTo command to draw cloudy lines
+                path.arcTo(event.point);
+            }
+        })
+    };
+</script>
+<script type="text/javascript">
+  $('#FormFormatoSintomas').on('submit', function(e) {
+    e.preventDefault()
+
+    var firmaEncargadoObra = document.getElementById('canvas');
+    var firmaTrabajador = document.getElementById('canvas1');
+    var firmaInspector = document.getElementById('canvas2');
+    var dataEncargadoURL = firmaEncargadoObra.toDataURL();
+    var dataTrabajadorURL = firmaTrabajador.toDataURL();
+    var dataInspectorURL = firmaInspector.toDataURL();
+
+    let parametros = {
+      preguntaUno: $('#preguntaUno').val(),
+      preguntaDos: $('#preguntaDos').val(),
+      preguntaTres: $('#preguntaTres').val(),
+      PreguntaCuatro: $('#PreguntaCuatro').val(),
+      preguntaCinco: $('#preguntaCinco').val(),
+      preguntaSeis: $('#preguntaSeis').val(),
+      preguntaSiete: $('#preguntaSiete').val(),
+      preguntaOcho: $('#preguntaOcho').val(),
+      preguntaNueve: $('#preguntaNueve').val(),
+      preguntaDiez: $('#preguntaDiez').val(),
+      totalPuntaje: $('#totalPuntaje').val(),
+      temperatura: $('#temperatura').val(),
+      observaciones: $('#observaciones').val(),
+      usuarioPruebaRealizada: $('#cedulaTrabajador').val(),
+      encargadoObra: $('#cedulaEncargadoObra').val(),
+      inspectorSST: $('#cedulaInspectorSST').val(),
+      firmaEncargadoObra: dataEncargadoURL.slice(22),
+      firmaTrabajador: dataTrabajadorURL.slice(22),
+      firmaInspectorObra: dataInspectorURL.slice(22),
+      nombreCompleto: $('#nombreVistante').val(),
+      cedulaVisitante: $('#cedulaVisitante').val(),
+      eps: $('#epsVisitante').val(),
+      afp: $('#afpVisitante').val(),
+      arl: $('#arlVisitante').val(),
+      nombrePersonaContacto: $('#nombreContactoVisitante').val(),
+      telefonoPersonaContacto: $('#telefonoPersonaContactoVisistante').val(),
+      parentesco: $('#parentescoConVisitante').val(),
+      dondeVive: $('#viviendaContactoVisitante').val()
+    }
+
+    $.ajax({
+      type: 'post',
+      url: '/formatos/sintomas/guardar/',
+      contentType: "application/json;charset=utf-8",
+      data: JSON.stringify(parametros),
+      dataType: 'json',
+      success: function(data) {
+        if (data.success) {
+          alert("Se ha guardado correctamente.");
+        }
+      }
+    });
+  })
+</script>
+{% endblock %}
+
+{% endblock %}
