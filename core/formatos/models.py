@@ -30,6 +30,8 @@ class ReporteCondicionesSalud(models.Model):
     inspectorSST = models.IntegerField("Inspector SST")
     firmaInspectorObra = models.CharField(
         "Firma Inspecto Obra", max_length=1000000, null=True, blank=True)
+    nombreArchivoGenerado = models.CharField(
+        "Nombre Archivo Generado XLSX", max_length=200, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -65,8 +67,7 @@ class Visitante(models.Model):
         return items
 
 
-def Guarda_Reporte_Condiciones_Salud(parametros):
-    print(parametros)
+def Guarda_Reporte_Condiciones_Salud(parametros, nombre_Archivo):
     with connection.cursor() as cursor:
         cursor.callproc('Guarda_Reporte_Condiciones_Salud', (parametros["preguntaUno"],
                                                              parametros["preguntaDos"],
@@ -95,4 +96,5 @@ def Guarda_Reporte_Condiciones_Salud(parametros):
                                                              parametros["nombrePersonaContacto"],
                                                              parametros["telefonoPersonaContacto"],
                                                              parametros["parentesco"],
-                                                             parametros["dondeVive"]))
+                                                             parametros["dondeVive"],
+                                                             nombre_Archivo))

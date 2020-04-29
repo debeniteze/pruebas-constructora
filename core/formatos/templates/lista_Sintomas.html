@@ -1,0 +1,40 @@
+{% extends 'LayoutPrincipal.html'%}
+{% load static %}
+{% block content%}
+<div class="col-lg-12 mt-5">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="header-title">Reportes Condiciones de Salud</h4>
+      <div class="single-table">
+        <div class="table-responsive">
+          <table class="table text-center tabla-reporte-condiciones-salud">
+            <thead class="text-uppercase bg-primary">
+              <tr>
+                <th>ID Formato</th>
+                <th>Fecha Diligenciamiento</th>
+                <th>Trabajador/Vis</th>
+                <th>Encargado Obra</th>
+                <th>Inspecto SST</th>
+                <th>Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in context %}
+              <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.fechaDiligenciamiento}}</td>
+                <td>{{i.usuarioPruebaRealizada}}</td>
+                <td>{{i.encargadoObra}}</td>
+                <td>{{i.inspectorSST}}</td>
+                <td>
+                  <a href=" /static/{{ i.nombreArchivoGenerado }} " download="Formato_Descarga"><i class="fa fa-download"></i></a>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

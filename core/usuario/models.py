@@ -15,4 +15,4 @@ class Usuario(AbstractUser):
     def obtener_imagen(self):
         if self.imagenPerfil:
             return '{}'.format(self.imagenPerfil)
-        return '{}{}'.format(STATIC_URL, 'img/empty.png')
+        return '{}{}'.format(STATIC_URL, 'assets/images/author/avatar.png')

@@ -1,16 +1,21 @@
 {% extends 'LayoutPrincipal.html' %}
 {% load static %}
-{% block content  %}
+{% load widget_tweaks %}
+{% block content %}
 <div class="col-lg-6 mt-5">
-    <div class="card">
-        <div class="card-body">
-            <div class="media mb-5">
-                <img class="img-fluid mr-4" src="{% static 'assets/images/media/media1.jpg' %}" alt="image">
-                <div class="media-body">
-                    <h4 class="mb-3"><a href="{% url 'formatos:FormatoSintomas' %}">Formato Sintomas</a></h4> Descripcion Formatos.
-                </div>
-            </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="media mb-5">
+        <img class="img-fluid mr-4" src="{% static 'assets/images/media/media1.jpg' %}" alt="image"></img>
+        <div class="media-body">
+          <h4 class="mb-3">Formato Sintomas</h4>
+          <ul>
+            <li><a href="{% url 'formatos:Crear_Formato_Sintomas' %}"><i class="fa fa-check"></i> Diligenciar nuevo formato.</a></li>
+            <li><a href="{% url 'formatos:Lista_Formatos_Generados' %}"><i class="fa fa-folder-open"></i> Ver formatos creados.</a></li>
+          </ul>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock %}

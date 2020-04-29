@@ -11,3 +11,9 @@ p {
   text-align: center;
   cursor: pointer;
 }
+
+.header-area {
+    padding: 0px 30px;
+    background: #fff;
+    border-bottom: 1px solid #d8e3e7;
+}

@@ -1,17 +1,17 @@
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.http import JsonResponse
-from core.formatos.models import Guarda_Reporte_Condiciones_Salud
-from django.views.generic import CreateView
-from config.settings import sheet_path, sheet_path2, ruta_imagenes_firmas
+from core.formatos.models import Guarda_Reporte_Condiciones_Salud, ReporteCondicionesSalud
+from config.settings import excel_formato_condiciones_salud_path, excel_generado_path, ruta_imagenes_firmas
 import json
 import openpyxl
 import base64
 import time
 import datetime
 from base64 import b64encode
-
-from django.views.decorators.csrf import csrf_exempt
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Create your views here.
 
@@ -25,10 +25,10 @@ def Format_Sintomas(request):
 
 
 @csrf_exempt
-def validate_username(request):
+def Crear_Nuevo_Formato(request):
     if request.is_ajax:
+        # print(os.path.join(BASE_DIR))
         parametros = json.loads(request.body.decode("utf-8"))
-        Guarda_Reporte_Condiciones_Salud(parametros)
         arcFirmaTrabajador = parametros["usuarioPruebaRealizada"]+'.jpg'
         arcFirmaInspector = parametros["inspectorSST"]+'.jpg'
         arcFirmEncargado = parametros["encargadoObra"]+'.jpg'
@@ -42,6 +42,8 @@ def validate_username(request):
 
         CrearArchivoExcel(arcFirmaTrabajador, arcFirmaInspector, arcFirmEncargado,
                           parametros["usuarioPruebaRealizada"], parametros)
+        nombre_Archivo = "Formato_Trabajador_" + parametros["usuarioPruebaRealizada"] + ".xlsx"
+        Guarda_Reporte_Condiciones_Salud(parametros, nombre_Archivo)
         data = {
             'success': True
         }
@@ -57,15 +59,15 @@ def GuardaFirmas(nombreImagen, dataImagen):
 
 
 def CrearArchivoExcel(firmaTrabajador, firmaInspector, firmaEncargado, cedulaTrabajador, parametros):
-    book = openpyxl.load_workbook(sheet_path)
+    book = openpyxl.load_workbook(excel_formato_condiciones_salud_path)
     sheet = book.active
 
     trabajador = openpyxl.drawing.image.Image(
-        ruta_imagenes_firmas + firmaTrabajador)
+        ruta_imagenes_firmas + '\\' + firmaTrabajador)
     inspector = openpyxl.drawing.image.Image(
-        ruta_imagenes_firmas + firmaInspector)
+        ruta_imagenes_firmas + '\\' + firmaInspector)
     encargado = openpyxl.drawing.image.Image(
-        ruta_imagenes_firmas + firmaEncargado)
+        ruta_imagenes_firmas + '\\' + firmaEncargado)
 
     x = datetime.datetime.now()
     sheet['f3'] = "%s" % x.day
@@ -100,8 +102,14 @@ def CrearArchivoExcel(firmaTrabajador, firmaInspector, firmaEncargado, cedulaTra
     encargado.anchor = 'A37'
     trabajador.anchor = 'G37'
     inspector.anchor = 'R37'
+
     sheet.add_image(encargado, 'A37')
     sheet.add_image(trabajador, 'g37')
     sheet.add_image(inspector, 'r37')
-    aa = sheet_path2 + "Formato_Trabajador_"+cedulaTrabajador+".xlsx"
-    book.save(aa)
+    guardar_archivo_generado = excel_generado_path + "Formato_Trabajador_" + cedulaTrabajador + ".xlsx"
+    book.save(guardar_archivo_generado)
+
+
+def Lista_Formatos_Sintomas(request):
+    context = ReporteCondicionesSalud.objects.all()
+    return render(request, 'lista_Sintomas.html', {'context': context})
