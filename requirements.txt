@@ -4,7 +4,7 @@ astroid==2.3.3
 autopep8==1.5.2
 colorama==0.4.3
 distlib==0.3.0
-Django==3.0.5
+Django==3.0.7
 django-widget-tweaks==1.4.8
 entrypoints==0.3
 et-xmlfile==1.0.1
